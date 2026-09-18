@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* --- Watercolor Illustration palette ---
+     ผืนน้ำหนัก (felt) = สีหมึกเขียวสนจางแบบวาดสีน้ำ, กระดาษ (paper) = กระดาษสีน้ำอุ่น
+     สี group ทั้งหมดเป็นโทน "wash" ที่จางลงจากต้นฉบับ แต่ยังคงแยกแยะได้ชัดเจน */
+  --felt: #2F6B63;
+  --felt-deep: #1D423C;
+  --felt-line: rgba(251, 244, 230, 0.10);
+  --peach: #FF9A9E;
+  --paper: #FBF3E6;
+  --paper-hi: #FFFBF4;
+  --paper-line: #E4D3B4;
+  --ink: #3E3550;
+  --ink-soft: #7C7288;
+  --gold: #D9A441;
+  --gold-bright: #F0C468;
+  --gold-deep: #A9762E;
+  --seal: #AE4C3F;
+  --seal-soft: #DE988C;
+  --group-brown: #B9824A;
+  --group-purple: #9B7BC4;
+  --group-lightblue: #6FB8D9;
+  --group-pink: #E38FBB;
+  --group-orange: #ED9E5B;
+  --group-red: #D1685A;
+  --group-yellow: #E6C15A;
+  --group-green: #7FB88A;
+  --group-darkblue: #4C6FA0;
+
+  /* หมึก/เม็ดสีสำหรับพู่กันสีน้ำในพื้นหลัง */
+  --wash-sky: rgba(111, 184, 217, 0.22);
+  --wash-blush: rgba(227, 143, 187, 0.18);
+  --wash-sage: rgba(127, 184, 138, 0.18);
+  --wash-mustard: rgba(217, 164, 65, 0.20);
+  --wash-plum: rgba(155, 123, 196, 0.16);
+
+  /* พื้นผิวกระดาษ (grain) ทำจาก SVG feTurbulence ฝังเป็น data URI */
+  --paper-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch' result='t'/%3E%3CfeColorMatrix in='t' type='matrix' values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.32 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  html, body {
+    @apply m-0 p-0;
+  }
+  body {
+    @apply font-body text-ink min-h-screen;
+    background-color: var(--felt-deep);
+    background-image:
+      radial-gradient(ellipse 55% 40% at 12% 8%, var(--wash-mustard), transparent 60%),
+      radial-gradient(ellipse 50% 42% at 88% 12%, var(--wash-sky), transparent 62%),
+      radial-gradient(ellipse 60% 50% at 20% 95%, var(--wash-plum), transparent 65%),
+      radial-gradient(ellipse 55% 45% at 92% 92%, var(--wash-blush), transparent 62%),
+      radial-gradient(ellipse 70% 60% at 50% 45%, var(--wash-sage), transparent 70%),
+      var(--paper-grain);
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, repeat;
+    background-blend-mode: normal, normal, normal, normal, normal, overlay;
+    background-attachment: fixed, fixed, fixed, fixed, fixed, fixed;
+  }
+  h1, h2, h3 {
+    @apply font-display;
+    letter-spacing: 0.01em;
+  }
+  button {
+    font-family: inherit;
+    cursor: pointer;
+  }
+  ::selection {
+    background: var(--gold);
+    color: var(--felt-deep);
+  }
+  a {
+    color: inherit;
+  }
+}
+
+@layer utilities {
+  .num {
+    font-variant-numeric: tabular-nums;
+  }
+  /* ผืนกระดานตรงกลาง — วาดเป็นแอ่งสีน้ำเขียวเข้ม ซ้อนด้วยเม็ดสีจางๆ และเกรนกระดาษ
+     แทนเส้นตารางผ้าสักหลาดแบบคาสิโนเดิม */
+  .board-felt-texture {
+    background-color: var(--felt);
+    background-image:
+      radial-gradient(ellipse 45% 35% at 22% 20%, rgba(240, 196, 104, 0.16), transparent 65%),
+      radial-gradient(ellipse 40% 40% at 78% 24%, rgba(222, 152, 140, 0.14), transparent 65%),
+      radial-gradient(ellipse 55% 45% at 50% 82%, rgba(155, 123, 196, 0.14), transparent 68%),
+      var(--paper-grain);
+    background-blend-mode: normal, normal, normal, overlay;
+    background-repeat: no-repeat, no-repeat, no-repeat, repeat;
+  }
+  /* กระดาษของช่อง/การ์ด/แผงต่างๆ ให้มีเกรนสีน้ำจางๆ ทับอยู่เสมอ */
+  .bg-paper,
+  .bg-paper-hi {
+    background-image: var(--paper-grain);
+    background-blend-mode: overlay;
+    background-repeat: repeat;
+  }
+  .jail-bars::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(90deg, rgba(62, 53, 80, 0.82) 0 4px, transparent 4px 13px);
+  }
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+  .perspective-800 {
+    perspective: 800px;
+  }
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  /* กรอบขอบไม่เท่ากันแบบกระดาษวาดด้วยมือ ใช้กับการ์ด/แผงหลักเพื่อลดความ "เป๊ะ" แบบดิจิทัล */
+  .watercolor-card {
+    border-radius: 26px 22px 28px 20px / 22px 26px 20px 28px;
+  }
+}
