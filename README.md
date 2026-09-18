@@ -1,48 +1,5 @@
-# ซุปเปอร์เศรษฐี — เว็บเกมออนไลน์ (Next.js + Firebase Realtime Database)
+# ทางเดินเศรษฐี — เว็บเกมออนไลน์ (Next.js + Firebase Realtime Database)
 
 โปรเจกต์นี้พัฒนาโปรโตไทป์กระดาน "ซุปเปอร์เศรษฐี" (จากเอกสารกติกาและ HTML โปรโตไทป์ที่ให้มา) ให้กลายเป็น
 เว็บเกมผู้เล่นหลายคนแบบเรียลไทม์ ด้วย **Next.js (App Router) + TypeScript + Firebase Realtime Database**
 
-// ลำดับตรงกับโปรโตไทป์ต้นฉบับ 40 ช่อง (0..39)
-export const BOARD: TileDef[] = [
-  { id: 0, type: "START", name: "เริ่มต้น" },
-  prop(1, "คลองสาน", "brown", 800),
-  prop(2, "ตลาดพลู", "brown", 900),
-  { id: 3, type: "CHANCE", name: "ประตูดวง" },
-  prop(4, "หัวลำโพง", "purple", 1000),
-  prop(5, "สามย่าน", "purple", 1100),
-  utility(6, "การไฟฟ้า", "ELECTRICITY"),
-  prop(7, "เยาวราช", "lightblue", 1200),
-  prop(8, "สำเพ็ง", "lightblue", 1300),
-  prop(9, "บางรัก", "lightblue", 1400),
-  { id: 10, type: "JAIL", name: "เยี่ยมคุก" },
-  prop(11, "สยาม", "pink", 1600),
-  prop(12, "ราชประสงค์", "pink", 1700),
-  prop(13, "ชิดลม", "pink", 1800),
-  { id: 14, type: "TAX", name: "ภาษี" },
-  prop(15, "ทองหล่อ", "orange", 2000),
-  prop(16, "เอกมัย", "orange", 2100),
-  { id: 17, type: "TREASURE", name: "หีบสมบัติ" },
-  prop(18, "พระโขนง", "orange", 2200),
-  utility(19, "การประปา", "WATER"),
-  { id: 20, type: "SPECIAL", name: "จุดพักผ่อน" },
-  prop(21, "สีลม", "red", 2400),
-  prop(22, "สาทร", "red", 2500),
-  prop(23, "บางนา", "red", 2600),
-  { id: 24, type: "CHANCE", name: "ประตูดวง" },
-  prop(25, "อารีย์", "yellow", 2800),
-  prop(26, "ลาดพร้าว", "yellow", 2900),
-  { id: 27, type: "TREASURE", name: "หีบสมบัติ" },
-  prop(28, "รัชดา", "yellow", 3000),
-  prop(29, "เจริญกรุง", "green", 3200),
-  { id: 30, type: "GO_TO_JAIL", name: "ไปเข้าคุก" },
-  prop(31, "วงเวียนใหญ่", "green", 3300),
-  prop(32, "ท่าพระ", "green", 3400),
-  { id: 33, type: "CHANCE", name: "ประตูดวง" },
-  prop(34, "สุขุมวิท", "darkblue", 3600),
-  prop(35, "เพลินจิต", "darkblue", 3700),
-  { id: 36, type: "TREASURE", name: "หีบสมบัติ" },
-  prop(37, "เอกชัย", "darkblue", 3800),
-  { id: 38, type: "TAX", name: "ภาษี" },
-  prop(39, "อโศก", "darkblue", 4000),
-];
